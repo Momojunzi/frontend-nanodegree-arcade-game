@@ -1,3 +1,69 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
 body {
     text-align: center;
+    font-family: sans-serif;
+}
+
+#score-box {
+    font-family: sans-serif;
+    background-color: forestgreen;
+    width: 505px;
+    margin: auto;
+    height: 10vh;
+    border: solid black 2px;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    box-shadow: 2px 2px 4px slategrey;
+}
+
+.score {
+    font-family: sans-serif;
+    width: 33%;
+    padding-top: 5%;
+}
+
+#resetdiv {
+    font-family: sans-serif;
+    background-color: khaki;
+    margin: auto;
+    border: solid firebrick 2px;
+    width: 505px;
+    height: 606px;
+    transform: translateY(-606px);
+    display: flex;
+    flex-flow: column;
+    flex-wrap: wrap;
+    box-shadow: 2px 2px 4px slategrey;
+}
+
+.reset-div-cont {
+    font-family: sans-serif;
+    font-weight: bold;
+    height: 33%;
+}
+
+#reset-text1 {
+    text-shadow: 2px 2px 4px slategrey;
+    color: firebrick;
+    padding-top: 20%;
+    font-size: 4em;
+}
+
+#reset-text2 {
+    padding: 15%;
+}
+
+#reset-button {
+    font-size: 1.75em;
+    height: 10%;
+    width: 25%;
+    margin: auto;
+    border-radius: 10%;
 }

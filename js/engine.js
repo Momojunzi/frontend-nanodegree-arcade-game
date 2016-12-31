@@ -28,7 +28,7 @@ var Engine = (function(global) {
     canvas.width = 505;
     canvas.height = 606;
     doc.body.appendChild(canvas);
-
+    
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -48,6 +48,7 @@ var Engine = (function(global) {
         update(dt);
         render();
 
+
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -56,7 +57,13 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+        var anFrame = win.requestAnimationFrame(main);
+        // stop the game and call the  reset function if the player runs out of lives
+        if(gameLives < 0){
+            win.cancelAnimationFrame(anFrame);
+            reset();
+        }
+
     }
 
     /* This function does some initial setup that should only occur once,
@@ -64,7 +71,7 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        reset();
+
         lastTime = Date.now();
         main();
     }
@@ -91,10 +98,15 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
+        allStars.forEach(function(star) {
+            star.update();
+        });
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
         player.update();
+
+
     }
 
     /* This function initially draws the "game level", it will then call
@@ -137,6 +149,7 @@ var Engine = (function(global) {
         }
 
         renderEntities();
+
     }
 
     /* This function is called by the render function and is called on each game
@@ -147,19 +160,53 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
+        allStars.forEach(function(star) {
+            star.render();
+        });
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
         player.render();
+
     }
+
+
 
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
+
     function reset() {
-        // noop
+        //create the reset page elements 
+        var resetDiv = new DomElement('div', 'body', 'resetdiv', 'reset-div', '');
+        resetDiv.elementFactory();
+        var resetText1 = new DomElement('h1', 'resetdiv', 'reset-text1', 'reset-div-cont', 'Game Over');
+        resetText1.elementFactory();
+        var resetText2 = new DomElement('h2', 'resetdiv', 'reset-text2','reset-div-cont', 'Your final score is ' +
+            gameScore + ' to try again click the reset button.');
+        resetText2.elementFactory();
+        var resetButton = new DomElement('button', 'resetdiv', 'reset-button', 'reset-div-cont', 'reset');
+        resetButton.elementFactory();
+        var resets = document.getElementById('reset-button');
+        // click the reset button on the reset page and reset the scores and restart the game
+        resets.addEventListener('click', function() {
+            gameLevel = 1;
+            document.getElementById('level').innerHTML = 'level: ' + gameLevel;
+            gameLives = 4;
+            document.getElementById('lives').innerHTML = 'lives: ' + gameLives;
+            gameScore = 0;
+            document.getElementById('points').innerHTML = 'score: ' + gameScore;
+            var finalReset = doc.getElementById('resetdiv');
+            doc.getElementById('body').removeChild(finalReset);
+            jerry.speed = 50;
+            bob.speed = 50;
+            john.speed = 60;
+            chuck.speed = 60;
+            eddie.speed = 90;
+            init();
+        });
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -171,7 +218,12 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+        'images/Star.png'
     ]);
     Resources.onReady(init);
 
@@ -181,3 +233,5 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
 })(this);
+
+
