@@ -6,7 +6,7 @@ var gameLives = 4;
 var gameLevel = 1;
 var gameScore = 0;
 // array for coordinates for each square to keep stars aligned
-var squaresArr = [[0,73],[101,73],[202,73],[303,73],[404,73],
+var SQUARES_ARR = [[0,73],[101,73],[202,73],[303,73],[404,73],
     [0,156],[101,156],[202,156],[303,156],[404,156],
     [0,239],[101,239],[202,239],[303,239],[404,239]];
 
@@ -116,7 +116,7 @@ Player.prototype.update = function() {
         // reset the player if there is a collision with the enemy
         this.x = 200;
         this.y = 405;
-        player.coll();
+        this.coll();
         collision = false;
     }
 };
@@ -175,8 +175,8 @@ Star.prototype.update = function() {
     }
     // update stars if player wins
     if(player.y <=0 || collision === true){
-        this.x = squaresArr[Math.floor(Math.random()*14)][0];
-        this.y = squaresArr[Math.floor(Math.random()*14)][1];
+        this.x = SQUARES_ARR[Math.floor(Math.random()*14)][0];
+        this.y = SQUARES_ARR[Math.floor(Math.random()*14)][1];
     }
 };
 
@@ -200,9 +200,9 @@ var pinkGirl = new Player(200, 405, 'images/char-pink-girl.png');
 var allEnemies = [jerry, eddie, john, bob, chuck];
 var player = boy;
 // make the stars
-var star1 = new Star(squaresArr[Math.floor(Math.random()*14)][0],squaresArr[Math.floor(Math.random()*14)][1]);
-var star2 = new Star(squaresArr[Math.floor(Math.random()*14)][0],squaresArr[Math.floor(Math.random()*14)][1]);
-var star3 = new Star(squaresArr[Math.floor(Math.random()*14)][0],squaresArr[Math.floor(Math.random()*14)][1]);
+var star1 = new Star(SQUARES_ARR[Math.floor(Math.random()*14)][0],SQUARES_ARR[Math.floor(Math.random()*14)][1]);
+var star2 = new Star(SQUARES_ARR[Math.floor(Math.random()*14)][0],SQUARES_ARR[Math.floor(Math.random()*14)][1]);
+var star3 = new Star(SQUARES_ARR[Math.floor(Math.random()*14)][0],SQUARES_ARR[Math.floor(Math.random()*14)][1]);
 var allStars = [star1, star2,star3];
 
 //function to quickly build html elements for scoreboard and reset screen
