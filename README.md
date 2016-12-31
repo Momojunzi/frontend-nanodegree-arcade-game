@@ -1,6 +1,22 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+#How to run the game
+1. To play locally.
+  1. Download the files from Github.
+  2. Navigate to the frontend-nanodegree-arcade-game folder and open the folder.
+  3. Click on the index.html file to open it in your browser.
+  4. Enjoy the game!
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+2. To play online.
+  1. Click this link to go to the [live preview on Github.](http://www.google.com)
+  2. Start playing!
+
+================================
+
+#How to play the game
+  The object of the game is to move your player from the bottom of the playing field to the top of the playing field
+  without colliding with the bugs. On the way to the top collect the stars to earn extra points!
+    *You have five lives. If you hit a bug you lose a life and your character will change to the next player.
+    *Every time you make it to the top of the playing field you go up a level and the enemies get faster.
+    *When you run out of lives the game is over! But don't worry you can click the restart button and try again.
